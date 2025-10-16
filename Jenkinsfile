@@ -53,9 +53,9 @@ pipeline {
 
         script {
           try {
-            sh 'ssh -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem ubuntu@172.31.17.230 kubectl apply -f .'
+            sh 'ssh -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem ubuntu@172.31.22.130 kubectl apply -f .'
           } catch (error) {
-            sh 'ssh -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem ubuntu@172.31.17.230 kubectl apply -f .'
+            sh 'ssh -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem ubuntu@172.31.22.130 kubectl apply -f .'
           }
         }
       }
