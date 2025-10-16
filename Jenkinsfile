@@ -51,5 +51,20 @@ pipeline {
         }
       }
     }
+    tage('deploy kubernetes'){
+steps{
+  sh 'sudo chmod 600 ./terraform_files/kav.pem'    
+  sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem deployment.yml ubuntu@172.31.24.90 :/home/ubuntu/'
+  sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem service.yml ubuntu@172.31.24.90 :/home/ubuntu/'
+script{
+  try{
+  sh 'ssh -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem ubuntu@172.31.17.230 kubectl apply -f .'
+  }catch(error)
+  {
+  sh 'ssh -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem ubuntu@172.31.17.230 kubectl apply -f .'
+  }
+}
+}
+}
   }
 }
