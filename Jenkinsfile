@@ -40,6 +40,7 @@ pipeline {
         withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awslogin', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
       }
     }
+    }
     stage('Terraform Operations for test workspace') {
       steps {
         script {
@@ -107,4 +108,3 @@ pipeline {
   }
 }
  
-}
