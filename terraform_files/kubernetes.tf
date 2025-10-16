@@ -10,7 +10,7 @@ key_name = "kav"
       volume_size = 20
       volume_type = "gp2"
 }
-tages = {
+tags = {
       name = "kubernetes-server"
 }
 provisioner "remote-exec" {
