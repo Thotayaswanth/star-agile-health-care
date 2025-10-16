@@ -16,7 +16,7 @@ pipeline {
                           }
             }
     
-     stage('Create Docker Image') {
+/*     stage('Create Docker Image') {
       steps {
         echo 'This stage will Create a Docker image'
         sh 'docker build -t thotayaswanth/healthcare:1.0 .'
@@ -28,13 +28,13 @@ pipeline {
                sh 'docker login -u ${dockerlogin} -p ${dockerpassword}'
                                    }
                         }
-                }
+                }    
     stage('Docker Push-Image') {
       steps {
         echo 'This stage will push my new image to the dockerhub'
         sh 'docker push thotayaswanth/healthcare:1.0'
             }
-      }
+      }   */
     stage('AWS-Login') {
       steps {
         withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awslogin', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
