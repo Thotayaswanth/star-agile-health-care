@@ -60,7 +60,7 @@ pipeline {
 
     stage('deploy kubernetes'){
 steps{
-  sh 'sudo chmod 600 ./terraform_files/kav.pem'    
+  sh 'chmod 600 ./terraform_files/kav.pem'    
   sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem deployment.yml ubuntu@172.31.22.130 :/home/ubuntu/'
   sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem service.yml ubuntu@172.31.22.130 :/home/ubuntu/'
 script{
