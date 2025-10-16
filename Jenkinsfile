@@ -42,15 +42,22 @@ pipeline {
     }
     }
     stage('setting the Kubernetes Cluster') {
-      steps {
-        dir('terraform_files'){
-          sh 'terraform init'
-          sh 'terraform validate'
-          sh 'terraform apply --auto-approve'
-          sh 'sleep 20'
-        }
+  steps {
+    withCredentials([aws(
+      credentialsId: 'awslogin',
+      accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+      secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+    )]) {
+      dir('terraform_files') {
+        sh 'terraform init'
+        sh 'terraform validate'
+        sh 'terraform apply --auto-approve'
+        sh 'sleep 20'
       }
     }
+  }
+}
+
     stage('deploy kubernetes'){
 steps{
   sh 'sudo chmod 600 ./terraform_files/kav.pem'    
