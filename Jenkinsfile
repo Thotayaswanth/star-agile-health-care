@@ -51,7 +51,7 @@ pipeline {
         }
       }
     }
-    tage('deploy kubernetes'){
+    stage('deploy kubernetes'){
 steps{
   sh 'sudo chmod 600 ./terraform_files/kav.pem'    
   sh 'sudo scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem deployment.yml ubuntu@172.31.24.90 :/home/ubuntu/'
