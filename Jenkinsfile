@@ -48,8 +48,7 @@ pipeline {
     stage('Deploy to Kubernetes') {
       steps {
         sh 'chmod 600 ./terraform_files/kav.pem'   
-        sh 'minikube start'
-        sh 'sleep 30'
+       
         sh 'scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem deployment.yml ubuntu@172.31.22.130:/home/ubuntu/'
         sh 'scp -o StrictHostKeyChecking=no -i ./terraform_files/kav.pem service.yml ubuntu@172.31.22.130:/home/ubuntu/'
 
